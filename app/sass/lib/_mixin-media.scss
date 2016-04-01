@@ -1,0 +1,80 @@
+@charset "UTF-8";
+$mediaArray: "only screen and (max-width: 319px)",
+            "only screen and (min-width: 320px) and (max-width: 339px)",
+            "only screen and (min-width: 340px) and (max-width: 359px)",
+            "only screen and (min-width: 360px) and (max-width: 379px)",
+            "only screen and (min-width: 380px) and (max-width: 399px)",
+            "only screen and (min-width: 400px) and (max-width: 419px)",
+            "only screen and (min-width: 420px) and (max-width: 439px)",
+            "only screen and (min-width: 440px) and (max-width: 459px)",
+            "only screen and (min-width: 460px) and (max-width: 479px)",
+            "only screen and (min-width: 480px) and (max-width: 499px)",
+            "only screen and (min-width: 500px) and (max-width: 519px)",
+            "only screen and (min-width: 520px) and (max-width: 539px)",
+            "only screen and (min-width: 540px) and (max-width: 559px)",
+            "only screen and (min-width: 560px) and (max-width: 579px)",
+            "only screen and (min-width: 580px) and (max-width: 599px)",
+            "only screen and (min-width: 600px) and (max-width: 619px)",
+            "only screen and (min-width: 620px) and (max-width: 639px)";
+//          "only screen and (min-width: 640px) and (max-width: 659px)",
+//          "only screen and (min-width: 660px) and (max-width: 679px)",
+//          "only screen and (min-width: 680px) and (max-width: 699px)",
+            //"only screen and (min-width: 700px) and (max-width: 719px)",
+//          "only screen and (max-width: 640px)";
+$rem-base: 16px;
+$ratioFor320: 640/320;
+$ratioFor340: 640/340;
+$ratioFor360: 640/360;
+$ratioFor380: 640/380;
+$ratioFor400: 640/400;
+$ratioFor420: 640/420;
+$ratioFor440: 640/440;
+$ratioFor460: 640/460;
+$ratioFor480: 640/480;
+$ratioFor500: 640/500;
+$ratioFor520: 640/520;
+$ratioFor540: 640/540;
+$ratioFor560: 640/560;
+$ratioFor580: 640/580;
+$ratioFor600: 640/600;
+$ratioFor620: 640/620;
+$ratioFor640: 640/640;
+//$ratioFor660: 720/660;
+//$ratioFor680: 720/680;
+//$ratioFor700: 720/700;
+//$ratioFor720: 720/720;
+
+$htmSizeArray: round($rem-base/$ratioFor320),
+                round($rem-base/$ratioFor340),
+                round($rem-base/$ratioFor360),
+                round($rem-base/$ratioFor380),
+                round($rem-base/$ratioFor400),
+                round($rem-base/$ratioFor420),
+                round($rem-base/$ratioFor440),
+                round($rem-base/$ratioFor460),
+                round($rem-base/$ratioFor480),
+                round($rem-base/$ratioFor500),
+                round($rem-base/$ratioFor520),
+                round($rem-base/$ratioFor540),
+                round($rem-base/$ratioFor560),
+                round($rem-base/$ratioFor580),
+                round($rem-base/$ratioFor600),
+                round($rem-base/$ratioFor620),
+                round($rem-base/$ratioFor640);
+//              round($rem-base/$ratioFor660),
+//              round($rem-base/$ratioFor680),
+//              round($rem-base/$ratioFor700),
+//              round($rem-base/$ratioFor720);
+/*页面样式结束*/
+
+// set responsive
+@for $mediaIndex from 1 to length($mediaArray) + 1 {
+  $media: nth($mediaArray, $mediaIndex);
+  $htmlFz: nth($htmSizeArray, $mediaIndex);
+  @media #{$media}
+  {
+    html {
+      font-size: $htmlFz;
+    }
+  }
+}
