@@ -7,6 +7,7 @@ $(function(){
     var p = $("#rightpoint").find(".point");
     for (var i=1;i<=p.length;i++){
         $(p[i-1]).attr("onclick","changePage("+i+");")
+        // $(p[i]).attr("onclick","toPage"+i+"();");
     }
 })
 var currentPage = 1;
@@ -14,56 +15,90 @@ function setPage(i){
     currentPage = i;
 }
 function changePage(p){
-    var n = parseInt(p);
-    if(currentPage < n){
-        for (var i = currentPage ; i<=n;i++){
-            topage(i)
-        }
-    }else if(currentPage > n ){
-        for (var i = currentPage ; i>=n;i--){
-            setTimeout(function(){
-                oneByOne(i-1);
-            },1000)
-        }
-    }
-}
-function topage(x){
-    $("#page"+x).animo({animation: 'bounceOutUp', duration: 1 })
-}
-function chooseIt(p){
-    var n = parseInt(p);
-    switch(n)
-    {
-        case 1:
-            showPage1();
+    var n=parseInt(p);
+    console.log(currentPage);
+    if(n == 1){
+        if(currentPage == 1){
             setPage(1);
-            break;
-        case 2:
+            return;
+        }else{
+            toPage(n);
+        }
+    }else if(n == 2){
+        if(currentPage == 1){
             showPage2();
             setPage(2);
-            break;
-        case 3:
+        }else{
+            toPage(n);
+        }
+    }else if(n == 3){
+        if(currentPage == 2){
             showPage3();
             setPage(3);
-            break;
-        case 4:
+        }else{
+            toPage(n);
+        }
+    }else if(n == 4){
+        if(currentPage == 3){
             showPage4();
             setPage(4);
-            break;
-        case 5:
+        }else{
+            toPage(n);
+        }
+    }else if(n == 5){
+        if(currentPage == 4){
             showPage5();
             setPage(5);
-            break;
-        case 6:
+        }else{
+            toPage(n);
+        }
+    }else if(n == 6){
+        if(currentPage == 5){
             showPage6();
             setPage(6);
-            break;
-        case 7:
+        }else{
+            toPage(n);
+        }
+    }else if(n == 7){
+        if(currentPage == 6){
             showPage7();
             setPage(7);
-            break;
+        }else{
+            toPage(n);
+        }
     }
 }
+
+
+function toPage(n){
+    if(n < currentPage){
+        while (n = currentPage){
+            back(n);
+        }
+    }else if(n > currentPage){
+        while (n = currentPage){
+            goto(n);
+        }
+    }
+}
+function back(n){
+    $("#page"+n).animo({animation: 'bounceOutDown', duration: 0.3 },function(){
+        $("#page"+n).hide();
+    });
+    $("#page"+parseInt(n)-1).animo({animation: 'bounceInDown', duration: 0.3 },function(){
+        $("#page"+parseInt(n)-1).hide();
+    });
+}
+function goto(n){
+    $("#page"+n).animo({animation: 'bounceInDown', duration: 0.3 },function(){
+        $("#page"+n).hide();
+    });
+    $("#page"+parseInt(n)+1).animo({animation: 'bounceInDown', duration: 0.3 },function(){
+        $("#page"+parseInt(n)-1).hide();
+    });
+}
+
+
 
 function showPage1(){
     page1();
@@ -134,7 +169,6 @@ function showPage7(){
         page7();
     });
 }
-
 /*定位右边的焦点*/
 function focusPoint(fag){
     setPage(fag);
@@ -187,21 +221,23 @@ function page4(){
             $("#yuan3").show().animo('rotate', { degrees: -360,duration: 1.6});
         })
     })
-    $("#zhu3").css("display","block");
-    $("#zhu3_img").animate({height:"292px"},1500);
     setTimeout(function(){
-        $("#zhu3 .numName").show().animo({animation: 'fadeIn', duration: 1.5});
-    },1500);
-    $("#zhu2").css("display","block");
-    $("#zhu2_img").animate({height:"123px"},1500);
-    setTimeout(function(){
-        $("#zhu2 .numName").show().animo({animation: 'fadeIn', duration: 1.5});
-    },1500);
-    $("#zhu1").css("display","block");
-    $("#zhu1_img").animate({height:"70px"},1500);
-    setTimeout(function(){
-        $("#zhu1 .numName").show().animo({animation: 'fadeIn', duration: 1.5});
-    },1500);
+        $("#zhu3").show();
+        $("#zhu3_img").animate({height:"292px"},1500);
+        setTimeout(function(){
+            $("#zhu3 .numName").show().animo({animation: 'fadeIn', duration: 1.5});
+        },2500);
+        $("#zhu2").show();
+        $("#zhu2_img").animate({height:"123px"},2500);
+        setTimeout(function(){
+            $("#zhu2 .numName").show().animo({animation: 'fadeIn', duration: 1.5});
+        },2500);
+        $("#zhu1").show();
+        $("#zhu1_img").animate({height:"70px"},2500);
+        setTimeout(function(){
+            $("#zhu1 .numName").show().animo({animation: 'fadeIn', duration: 1.5});
+        },2500);
+    },1000);
 }
 
 var ring_node = $("#ring-1");
@@ -259,5 +295,5 @@ function page6(){
     })
 }
 function page7(){
-
+    console.log("第七页显示");
 }
